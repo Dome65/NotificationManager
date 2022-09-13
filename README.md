@@ -4,6 +4,9 @@
 3) Į MySql įsidėti lenteles su žemiau esanciomis komandomis
 4) Paleisti kaip SpringBoot aplikaciją
 
+P.S. Jei dėl kažkokios priežasties nebeveikia pastas teks ir ta susikonfiguruoti saviski
+https://www.baeldung.com/spring-email - cia kaip tai padaryti
+
 Komandos:
 
 DROP TABLE IF EXISTS QRTZ_FIRED_TRIGGERS;
