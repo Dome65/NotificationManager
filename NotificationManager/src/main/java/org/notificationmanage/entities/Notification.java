@@ -1,4 +1,4 @@
-package org.notificationmanager;
+package org.notificationmanage.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

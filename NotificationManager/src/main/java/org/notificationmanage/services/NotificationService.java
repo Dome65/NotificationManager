@@ -1,7 +1,9 @@
-package org.notificationmanager;
+package org.notificationmanage.services;
 
 import java.util.List;
 
+import org.notificationmanage.entities.Notification;
+import org.notificationmanage.repositories.NotificationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
