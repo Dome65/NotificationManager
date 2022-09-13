@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.notificationmanage.entities.User;
 import org.notificationmanage.entities.UserDto;
 import org.notificationmanage.services.UserService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,33 +24,29 @@ public class AuthController {
 		this.userService = userService;
 	}
 
-	// handler method to handle home page request
-	@GetMapping("/index")
-	public String home() {
-		return "index";
-	}
-
 	// handler method to handle login request
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
 
-	// handler method to handle list of users
-	@GetMapping("/users")
-	public String users(Model model) {
-		List<UserDto> users = userService.findAllUsers();
-		model.addAttribute("users", users);
-		return "users";
-	}
-
 	// handler method to handle user registration form request
+
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
 		// create model object to store form data
 		UserDto user = new UserDto();
 		model.addAttribute("user", user);
 		return "register";
+	}
+
+	// handler method to handle list of users
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/users")
+	public String users(Model model) {
+		List<UserDto> users = userService.findAllUsers();
+		model.addAttribute("users", users);
+		return "users";
 	}
 
 	// handler method to handle user registration form submit request

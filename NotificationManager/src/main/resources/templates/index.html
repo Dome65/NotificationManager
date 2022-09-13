@@ -12,7 +12,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/}">Email Manager</a>
+			<a class="navbar-brand" th:href="@{/index}">Email Manager</a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -47,7 +47,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr th:each="emailRequest : ${listEmailRequests}">
+					<tr th:each="emailRequest : ${findByUser}">
 						<td th:text="${emailRequest.id}">Product ID</td>
 						<td th:text="${emailRequest.subject}">Subject</td>
 						<td th:text="${emailRequest.body}">Content</td>

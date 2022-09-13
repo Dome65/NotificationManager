@@ -1,10 +1,15 @@
 package org.notificationmanage.controllers;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.notificationmanage.email.EmailRequest;
+import org.notificationmanage.entities.User;
+import org.notificationmanage.repositories.EmailRequestRepository;
+import org.notificationmanage.repositories.UserRepository;
 import org.notificationmanage.services.EmailRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -12,20 +17,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+@RequestMapping("/email")
 @Controller
-public class AppController {
+public class EmailRequestController {
 
 	@Autowired
 	private EmailRequestService service;
 
-	@RequestMapping("")
+	@Autowired
+	private EmailRequestRepository repo;
+
+	@RequestMapping("/index")
 	public String viewHomePage(Model model) {
-		List<EmailRequest> listEmailRequests = service.listAll();
-		model.addAttribute("listEmailRequests", listEmailRequests);
+		List<EmailRequest> findByUser = service.listAll();
+		model.addAttribute("findByUser", findByUser);
 
 		return "index";
 	}

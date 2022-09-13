@@ -55,6 +55,6 @@ public class EmailRequest implements Serializable {
 
 	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id", referencedColumnName = "id", insertable = false, updatable = false)
+	@JoinColumn(name = "user_id", referencedColumnName = "id", insertable = true, updatable = true)
 	private User user;
 }

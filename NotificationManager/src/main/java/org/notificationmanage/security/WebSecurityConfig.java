@@ -22,9 +22,9 @@ public class WebSecurityConfig {
 	// configure SecurityFilterChain
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests().antMatchers("/register/**").permitAll().antMatchers("/index")
-				.permitAll().antMatchers("/users").hasRole("ADMIN").and()
-				.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/users")
+		http.csrf().disable().authorizeRequests().antMatchers("/register/**").permitAll().antMatchers("/email/**")
+				.hasAnyRole("USER", "ADMIN").antMatchers("/users").hasRole("ADMIN").and()
+				.formLogin(form -> form.loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/index")
 						.permitAll())
 				.logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
 
