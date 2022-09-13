@@ -54,7 +54,7 @@ public class EmailJobSchedulerController {
 			new ScheduleEmailResponse(false, "Error scheduling email. Please try later!");
 
 		}
-		return "redirect:/";
+		return "redirect:/email/index";
 	}
 
 	private JobDetail buildJobDetail(EmailRequest emailRequest) {

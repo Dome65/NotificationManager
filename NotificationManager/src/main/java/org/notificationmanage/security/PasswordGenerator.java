@@ -1,4 +1,4 @@
-package org.notificationmanage.services;
+package org.notificationmanage.security;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.notificationmanage.entities.User;
-import org.notificationmanage.entities.UserDto;
+import org.notificationmanage.security.UserDto;
 import org.notificationmanage.services.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

@@ -3,35 +3,35 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
-<title>Create New Email</title>
+<title th:text="#{create.email}"></title>
 </head>
 <body>
 	<div align="center">
-		<h1>Create New Email</h1>
+		<h1 th:text="#{create.email}"></h1>
 		<br />
 		<form action="#" th:action="@{/scheduleEmail}"
 			th:object="${emailRequest}" method="post">
 
 			<table border="0" cellpadding="10">
 				<tr>
-					<td>Recipients' Email:</td>
+					<td th:text="#{email.rec}"></td>
 					<td><input type="email" th:field="*{email}" /></td>
 				</tr>
 				<tr>
-					<td>Email Subject:</td>
+					<td th:text="#{email.sub}"></td>
 					<td><input type="text" th:field="*{subject}" /></td>
 				</tr>
 				<tr>
-					<td>Email Body:</td>
+					<td th:text="#{email.body}"></td>
 					<td><input type="text" th:field="*{body}" /></td>
 				</tr>
 				<tr>
-					<td>DateTime:</td>
+					<td th:text="#{email.date}"></td>
 					<td><input type="datetime-local" th:field="*{dateTime}" /></td>
 				</tr>
 
 				<tr>
-					<td colspan="2"><button type="submit">Save</button></td>
+					<td colspan="2"><button type="submit" th:text="#{save}"></button></td>
 				</tr>
 			</table>
 		</form>

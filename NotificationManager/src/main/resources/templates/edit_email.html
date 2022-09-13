@@ -3,37 +3,63 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="utf-8" />
-<title>Edit Email</title>
+<title th:text="#{email.title}"></title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+	
+</script>
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+				$("#locales").change(
+						function() {
+							var selectedOption = $('#locales').val();
+							if (selectedOption != '') {
+								window.location.replace('international?lang='
+										+ selectedOption);
+							}
+						});
+			});
+</script>
 </head>
 <body>
+	<span th:text="#{lang.change}"></span>:
+	<select id="locales">
+		<option value=""></option>
+		<option value="en" th:text="#{lang.eng}"></option>
+		<option value="fr" th:text="#{lang.lt}"></option>
+	</select>
 	<div align="center">
-		<h1>Edit Email</h1>
+
+		<h1 th:text="#{email.title}"></h1>
 		<br />
 		<form action="#" th:action="@{/scheduleEmail}"
 			th:object="${emailRequest}" method="post">
 
 			<table border="0" cellpadding="10">
 				<tr>
-					<td>Recipients' Email:</td>
+					<td th:text="#{email.rec}"></td>
 					<td><input type="email" th:field="*{email}" /></td>
 				</tr>
 				<tr>
-					<td>Email Subject:</td>
+					<td th:text="#{email.sub}"></td>
 					<td><input type="text" th:field="*{subject}" /></td>
 				</tr>
 				<tr>
-					<td>Email Body:</td>
+					<td th:text="#{email.body}"></td>
 					<td><input type="text" th:field="*{body}" /></td>
 				</tr>
 				<tr>
-					<td>DateTime:</td>
+					<td th:text="#{email.date}"></td>
 					<td><input type="datetime-local" th:field="*{dateTime}" /></td>
 				</tr>
 				<tr>
-					<td colspan="2"><button type="submit">Save</button></td>
+					<td colspan="2"><button type="submit" th:text="#{save}"></button></td>
 				</tr>
 			</table>
 		</form>
+
 	</div>
+
 </body>
 </html>

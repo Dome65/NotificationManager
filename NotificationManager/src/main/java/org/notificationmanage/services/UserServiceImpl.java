@@ -2,9 +2,9 @@ package org.notificationmanage.services;
 
 import org.notificationmanage.entities.Role;
 import org.notificationmanage.entities.User;
-import org.notificationmanage.entities.UserDto;
 import org.notificationmanage.repositories.RoleRepository;
 import org.notificationmanage.repositories.UserRepository;
+import org.notificationmanage.security.UserDto;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +16,9 @@ import java.util.stream.Collectors;
 public class UserServiceImpl implements UserService {
 
 	private UserRepository userRepository;
+	
 	private RoleRepository roleRepository;
+	
 	private PasswordEncoder passwordEncoder;
 
 	public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,

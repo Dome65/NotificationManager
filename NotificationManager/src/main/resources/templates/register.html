@@ -12,7 +12,7 @@
 <body>
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 		<div class="container-fluid">
-			<a class="navbar-brand" th:href="@{/email/index}">Email Manager</a>
+			<a class="navbar-brand" th:href="@{/email/index}" th:text="#{title}"></a>
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -22,7 +22,7 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link active"
-						aria-current="page" th:href="@{/login}">Login</a></li>
+						aria-current="page" th:href="@{/login}" th:text="#{login}"></a></li>
 				</ul>
 			</div>
 		</div>
@@ -34,17 +34,16 @@
 		<div class="row col-md-8 offset-md-2">
 			<div class="card">
 				<div class="card-header">
-					<h2 class="text-center">Registration</h2>
+					<h2 class="text-center" th:text="#{reg}"></h2>
 				</div>
 				<div th:if="${param.success}">
-					<div class="alert alert-info">You have successfully
-						registered our app!</div>
+					<div class="alert alert-info" th:text="#{suc.reg}"></div>
 				</div>
 				<div class="card-body">
 					<form method="post" role="form" th:action="@{/register/save}"
 						th:object="${user}">
 						<div class="form-group mb-3">
-							<label class="form-label">First Name</label> <input
+							<label class="form-label" th:text="#{first.name}"></label> <input
 								class="form-control" id="firstName" name="firstName"
 								placeholder="Enter first name" th:field="*{firstName}"
 								type="text" />
@@ -53,7 +52,7 @@
 						</div>
 
 						<div class="form-group mb-3">
-							<label class="form-label">Last Name</label> <input
+							<label class="form-label" th:text="#{last.name}"></label> <input
 								class="form-control" id="lastName" name="lastName"
 								placeholder="Enter last name" th:field="*{lastName}" type="text" />
 							<p th:errors="*{lastName}" class="text-danger"
@@ -61,7 +60,7 @@
 						</div>
 
 						<div class="form-group mb-3">
-							<label class="form-label">Email</label> <input
+							<label class="form-label" th:text="#{email}"></label> <input
 								class="form-control" id="email" name="email"
 								placeholder="Enter email address" th:field="*{email}"
 								type="email" />
@@ -70,7 +69,7 @@
 						</div>
 
 						<div class="form-group mb-3">
-							<label class="form-label">Password</label> <input
+							<label class="form-label" th:text="#{password}"></label> <input
 								class="form-control" id="password" name="password"
 								placeholder="Enter password" th:field="*{password}"
 								type="password" />
@@ -78,9 +77,9 @@
 								th:if="${#fields.hasErrors('password')}"></p>
 						</div>
 						<div class="form-group">
-							<button class="btn btn-primary" type="submit">Register</button>
-							<span>Already registered? <a th:href="@{/login}">Login
-									here</a></span>
+							<button class="btn btn-primary" type="submit" th:text="#{reg}"></button>
+							<span th:text="#{reg.ask}"><a th:href="@{/login}"
+								th:text="#{login}"></a></span>
 						</div>
 					</form>
 				</div>

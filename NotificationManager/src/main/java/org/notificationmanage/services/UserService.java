@@ -5,7 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.notificationmanage.entities.User;
-import org.notificationmanage.entities.UserDto;
+import org.notificationmanage.security.UserDto;
 import org.springframework.stereotype.Service;
 
 @Service
