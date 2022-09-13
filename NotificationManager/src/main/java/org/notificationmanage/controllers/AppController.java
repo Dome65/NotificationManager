@@ -2,8 +2,8 @@ package org.notificationmanage.controllers;
 
 import java.util.List;
 
-import org.notificationmanage.entities.Notification;
-import org.notificationmanage.services.NotificationService;
+import org.notificationmanage.email.EmailRequest;
+import org.notificationmanage.services.EmailRequestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,50 +14,48 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AppController {
 
 	@Autowired
-	private NotificationService service;
+	private EmailRequestService service;
 
-	@RequestMapping("/")
+	@RequestMapping("")
 	public String viewHomePage(Model model) {
-		List<Notification> listNotifications = service.listAll();
-		model.addAttribute("listNotifications", listNotifications);
+		List<EmailRequest> listEmailRequests = service.listAll();
+		model.addAttribute("listEmailRequests", listEmailRequests);
 
 		return "index";
 	}
 
 	@RequestMapping("/new")
-	public String showNewNotificationPage(Model model) {
-		Notification notification = new Notification();
-		model.addAttribute("notification", notification);
+	public String showNewEmailRequestPage(Model model) {
+		EmailRequest emailRequest = new EmailRequest();
+		model.addAttribute("emailRequest", emailRequest);
 
-		return "new_notification";
+		return "new_email";
 	}
 
 	@PostMapping(value = "/save")
-	public String saveNotification(@ModelAttribute("notification") Notification notification) {
-		service.save(notification);
+	public String saveEmailRequest(@ModelAttribute("emailRequest") EmailRequest emailRequest) {
+		service.save(emailRequest);
 
 		return "redirect:/";
 	}
 
 	@RequestMapping("/edit/{id}")
-	public ModelAndView showEditNotificationPage(@PathVariable(name = "id") int id) {
-		ModelAndView mav = new ModelAndView("edit_notification");
-		Notification notification = service.get(id);
-		mav.addObject("notification", notification);
+	public ModelAndView showEditEmailRequestPage(@PathVariable(name = "id") int id) {
+		ModelAndView mav = new ModelAndView("edit_email");
+		EmailRequest emailRequest = service.get(id);
+		mav.addObject("emailRequest", emailRequest);
 
 		return mav;
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public String deleteNotification(@PathVariable(name = "id") int id) {
+	public String deleteEmailRequest(@PathVariable(name = "id") int id) {
 		service.delete(id);
 		return "redirect:/";
 	}

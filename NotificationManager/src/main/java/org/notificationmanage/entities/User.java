@@ -19,6 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
+import org.notificationmanage.email.EmailRequest;
+
 import javax.persistence.JoinColumn;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -38,7 +41,12 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,8 +64,8 @@ public class User {
 					@JoinColumn(name = "role_id", referencedColumnName = "id") })
 	private List<Role> roles = new ArrayList<>();
 
-//	@JsonManagedReference
-//	@OneToMany(mappedBy = "user")
-//	private List<Notification> notifications = new ArrayList<Notification>();
+	@JsonManagedReference
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<EmailRequest> requests = new ArrayList<EmailRequest>();
 
 }
